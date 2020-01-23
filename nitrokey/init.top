@@ -1,0 +1,6 @@
+base:
+  dom0:
+    - match: nodegroup
+    - nitrokey.dom0
+  fedora-30:
+    - nitrokey.template
