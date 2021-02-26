@@ -27,3 +27,12 @@ It is, of course, possible for a vendor using this installer to covertly copy th
 
 Run make-image.sh to build an OEM image. Use a DVD or pendrive like with a regular Qubes installer. No other actions are needed, the script will download the official ISO itself.
 
+
+# UEFI Comments:
+
+* Did not manage to create an OEM 4.0.4rc2 image out-of-the-box
+* Took `images/efiboot.img`, `images/pxeboot/xen.gz`, `EFI/BOOT/BOOTX64.EFI` from the 4.1alpha image
+	* replaced/added them to the 4.0.4rc2 image
+	* added a grub.cfg (also inspired from  4.1alpha)
+  * `EFI/BOOT/BOOTX64.cfg` seems to have no use ...
+* created image with these + kickstart-config => qubes-oem image (4.0.4rc2)

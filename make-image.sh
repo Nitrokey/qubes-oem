@@ -6,7 +6,9 @@ command -v wget >/dev/null 2>&1 || { echo >&2 "Please install 'wget' first.  Abo
 set -xe
 
 # Basic parameters
+#
 QUBES_RELEASE="R4.0.4-rc2"
+#QUBES_RELEASE="R4.1.0-alpha20201014"
 RELEASE_ISO_FILENAME="Qubes-${QUBES_RELEASE}-x86_64.iso"
 CUSTOM_ISO_FILENAME="Qubes-${QUBES_RELEASE}-nitrokey-oem-x86_64.iso"
 
@@ -34,6 +36,11 @@ pushd unpacked-iso
 # automatic mode
 cp ../isolinux.cfg isolinux/
 cp ../ks.cfg ./
+cp ../BOOTX64.cfg EFI/BOOT/
+cp ../BOOTX64.EFI EFI/BOOT/
+cp ../efiboot.img images/
+cp ../xen.gz images/pxeboot
+cp ../grub.cfg EFI/BOOT/
 cp -r ../nitrokey ./
 popd
 
