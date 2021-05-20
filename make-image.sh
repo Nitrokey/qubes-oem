@@ -6,7 +6,7 @@ command -v wget >/dev/null 2>&1 || { echo >&2 "Please install 'wget' first.  Abo
 set -xe
 
 # Basic parameters
-QUBES_RELEASE="R4.0.3"
+QUBES_RELEASE="R4.0.4"
 RELEASE_ISO_FILENAME="Qubes-${QUBES_RELEASE}-x86_64.iso"
 CUSTOM_ISO_FILENAME="Qubes-${QUBES_RELEASE}-nitrokey-oem-x86_64.iso"
 
