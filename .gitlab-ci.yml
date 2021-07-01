@@ -1,0 +1,27 @@
+include: 'https://raw.githubusercontent.com/Nitrokey/common-ci-jobs/master/common_jobs.yml'
+
+stages:
+  - pull-github
+  - oem-release
+
+variables:
+  GIT_STRATEGY: clone            
+  GIT_DEPTH: 0                    
+  GIT_SUBMODULE_STRATEGY: recursive 
+  SCRIPTS_REPO: git@git.dotplex.com:nitrokey/gitlab-ci.git
+  REPO_USER: nitrokey
+  REPO_NAME: nitrokey-storage-firmware
+  MAIN_BRANCH: ci-nitropc
+
+oem-release:
+  image: ubuntu:latest
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+  tags:
+    - docker
+  stage: oem-release
+  script:
+    - make-image.sh
+    - oem-release.sh nitrokey*.iso $CI_COMMIT_BRANCH
+  after_script:
+    - wget $icon_server/checkmark/$CI_COMMIT_REF_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/$CI_JOB_STATUS/${CI_JOB_URL#*/*/*/}
