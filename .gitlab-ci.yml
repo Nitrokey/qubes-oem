@@ -15,7 +15,7 @@ variables:
   MAIN_BRANCH: ci-nitropc
 
 oem-release:
-  image: ubuntu:latest
+  image: nitrokey/ci-nightly-upload:latest
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push"'
   tags:
