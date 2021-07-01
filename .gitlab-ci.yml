@@ -3,6 +3,7 @@ include: 'https://raw.githubusercontent.com/Nitrokey/common-ci-jobs/master/commo
 stages:
   - pull-github
   - oem-release
+  - deploy
 
 variables:
   GIT_STRATEGY: clone            
