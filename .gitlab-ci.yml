@@ -11,6 +11,6 @@ variables:
   SCRIPTS_REPO: git@git.dotplex.com:nitrokey/gitlab-ci.git
   REPO_USER: nitrokey
   REPO_NAME: qubes-oem
-  MAIN_BRANCH: nitropc
+  MAIN_BRANCH: nitropad
   ENABLE_OEM: "true"
 
