@@ -1,0 +1,16 @@
+include: 'https://raw.githubusercontent.com/Nitrokey/common-ci-jobs/master/common_jobs.yml'
+
+stages:
+  - pull-github
+  - deploy
+
+variables:
+  GIT_STRATEGY: clone            
+  GIT_DEPTH: 0                    
+  GIT_SUBMODULE_STRATEGY: recursive 
+  SCRIPTS_REPO: git@git.dotplex.com:nitrokey/gitlab-ci.git
+  REPO_USER: nitrokey
+  REPO_NAME: qubes-oem
+  MAIN_BRANCH: nitropc
+  ENABLE_OEM: "true"
+
