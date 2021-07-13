@@ -11,7 +11,7 @@ variables:
   GIT_SUBMODULE_STRATEGY: recursive 
   SCRIPTS_REPO: git@git.dotplex.com:nitrokey/gitlab-ci.git
   REPO_USER: nitrokey
-  REPO_NAME: debian-oem
+  REPO_NAME: qubes-oem
   MAIN_BRANCH: nitropc
   COMMON_PULL: "true"
   COMMON_UPLOAD_NIGHTLY: "false"
