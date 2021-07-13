@@ -14,8 +14,8 @@ UNPACKED_IMAGE_PATH="./unpacked-iso/"
 MBR_IMAGE_FILENAME="${RELEASE_ISO_FILENAME}.mbr"
 
 if [ ! -f "${RELEASE_ISO_FILENAME}" ]; then
-	wget "https://ftp.qubes-os.org/iso/${RELEASE_ISO_FILENAME}" -O unverified.iso
-	wget "https://ftp.qubes-os.org/iso/${RELEASE_ISO_FILENAME}.asc"
+	wget -q "https://ftp.qubes-os.org/iso/${RELEASE_ISO_FILENAME}" -O unverified.iso
+	wget -q "https://ftp.qubes-os.org/iso/${RELEASE_ISO_FILENAME}.asc"
     gpgv --keyring ./qubes-release-keyring.gpg "${RELEASE_ISO_FILENAME}.asc" unverified.iso
     mv unverified.iso "${RELEASE_ISO_FILENAME}"
 fi
