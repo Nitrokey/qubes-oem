@@ -20,21 +20,32 @@ variables:
   DEVICE_FOLDER: "nitropc"
   UPLOAD_FOLDER: "qubes-oem"
 
-oem-build:
-  image: ghcr.io/lennardboediger/ci-oem-release:latest
+.oem-build:
+  image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-oem-release@sha256:7cf04f607158a6e2bc7db210c36edb87071f91e0df119c29f02df2112eb44ad1
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push"'
   tags:
     - docker
   stage: build
-  script:
-    - ./make-image.sh
-    - ls
-    - mkdir -p artifacts
-    - cp *nitrokey*.iso artifacts/
   after_script:
     - wget $icon_server/checkmark/$CI_COMMIT_REF_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/$CI_JOB_STATUS/${CI_JOB_URL#*/*/*/}
   artifacts:
     paths:
       - artifacts
     expire_in: 1 hrs
+
+oem-build-DE:
+  extends: .oem-build
+  script:
+    - ./make-image.sh de
+    - ls
+    - mkdir -p artifacts
+    - cp *nitropc*.iso artifacts/
+
+oem-build-EN:
+  extends: .oem-build
+  script:
+    - ./make-image.sh en
+    - ls
+    - mkdir -p artifacts
+    - cp *nitropc*.iso artifacts/

@@ -4,13 +4,21 @@ command -v xorriso >/dev/null 2>&1 || { echo >&2 "Please install 'xorriso' first
 command -v wget >/dev/null 2>&1 || { echo >&2 "Please install 'wget' first.  Aborting."; exit 1; }
 
 set -xe
-
+if [ "$1" = "de" ]; then
+    mv ./ks-DE.cfg ./ks.cfg
+    echo Build DE
+elif [ "$1" = "en" ]; then
+    mv ./ks-EN.cfg ./ks.cfg
+    echo Build EN
+else
+    echo Select Language: ./make-image.sh en
+fi
 # Basic parameters
-#
 QUBES_RELEASE="R4.0.4"
+DEVICE="nitropc"
 #QUBES_RELEASE="R4.1.0-alpha20201014"
 RELEASE_ISO_FILENAME="Qubes-${QUBES_RELEASE}-x86_64.iso"
-CUSTOM_ISO_FILENAME="Qubes-${QUBES_RELEASE}-nitrokey-oem-x86_64.iso"
+CUSTOM_ISO_FILENAME="Qubes-${QUBES_RELEASE}-${DEVICE}-oem-x86_64-${1}.iso"
 
 UNPACKED_IMAGE_PATH="./unpacked-iso/"
 MBR_IMAGE_FILENAME="${RELEASE_ISO_FILENAME}.mbr"
