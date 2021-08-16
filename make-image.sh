@@ -12,6 +12,7 @@ elif [ "$1" = "en" ]; then
     echo Build EN
 else
     echo Select Language: ./make-image.sh en
+		exit
 fi
 # Basic parameters
 QUBES_RELEASE="R4.0.4"
