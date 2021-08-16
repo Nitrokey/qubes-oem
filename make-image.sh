@@ -13,6 +13,7 @@ elif [ "$1" = "en" ]; then
     echo Build EN
 else
     echo Select Language: ./make-image.sh en
+		exit
 fi
 
 # Basic parameters
