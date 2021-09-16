@@ -25,7 +25,7 @@ It is, of course, possible for a vendor using this installer to covertly copy th
 
 # Usage
 
-Run make-image.sh to build an OEM image. Use a DVD or pendrive like with a regular Qubes installer. No other actions are needed, the script will download the official ISO itself.
+Run make-image.sh to build an OEM image (or [download](https://www.nitrokey.com/files/ci/nitropc/qubes-oem/) the image). Use a DVD or pendrive like with a regular Qubes installer. No other actions are needed, the script will download the official ISO itself.
 
 
 # UEFI Comments:
