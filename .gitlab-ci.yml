@@ -9,8 +9,6 @@ variables:
   GIT_STRATEGY: clone            
   GIT_DEPTH: 0                    
   GIT_SUBMODULE_STRATEGY: recursive 
-  SCRIPTS_REPO: git@git.dotplex.com:nitrokey/gitlab-ci.git
-  REPO_USER: nitrokey
   REPO_NAME: qubes-oem
   MAIN_BRANCH: nitropad
   COMMON_PULL: "true"
@@ -21,9 +19,10 @@ variables:
   UPLOAD_FOLDER: "qubes-oem"
 
 .oem-build:
-  image: registry.git.dotplex.com/nitrokey/gitlab-ci/ci-oem-release@sha256:7cf04f607158a6e2bc7db210c36edb87071f91e0df119c29f02df2112eb44ad1
+  image: registry.git.nitrokey.com/nitrokey/gitlab-ci/ci-oem-release:latest
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push"'
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
   tags:
     - docker
   stage: build
