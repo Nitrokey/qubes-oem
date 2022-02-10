@@ -1,24 +1,39 @@
 #!/usr/bin/env bash
+KS_TEMPLATE=ks_template.cfg
 
 command -v xorriso >/dev/null 2>&1 || { echo >&2 "Please install 'xorriso' first.  Aborting."; exit 1; }
 command -v wget >/dev/null 2>&1 || { echo >&2 "Please install 'wget' first.  Aborting."; exit 1; }
 
 set -xe
+cp $KS_TEMPLATE ks.cfg
 
 if [ "$1" = "de" ]; then
-    mv ./ks-DE.cfg ./ks.cfg
-    echo Build DE
+    sed -i s/KB_LANG/de/g ks.cfg 
+    sed -i s/SYS_LANG/de_DE.UTF-8/g ks.cfg
+    echo "Build DE"
 elif [ "$1" = "en" ]; then
-    mv ./ks-EN.cfg ./ks.cfg
-    echo Build EN
+    sed -i s/KB_LANG/us/g ks.cfg 
+    sed -i s/SYS_LANG/en_US.UTF-8/g ks.cfg
+    echo "Build EN"
 else
-    echo Select Language: ./make-image.sh en
+    echo "Usage: ./make-image.sh en\|de nitropc\|nitropad"
     exit
 fi
 
+if [ "$2" = "nitropad" ];then
+    sed -i s/DISK_INSTALL/sda/g ks.cfg
+    DEVICE="nitropad"
+    echo "Bulid nitropad image"
+elif [ "$2" = "nitropc" ];then
+    sed -i s/DISK_INSTALL/nvme0n1/g ks.cfg
+    DEVICE="nitropc"
+    echo "Bulid nitropc image"
+else
+    echo "Usage: ./make-image.sh en\|de nitropc\|nitropad"
+    exit
+fi
 # Basic parameters
-QUBES_RELEASE="R4.0.4"
-DEVICE="nitropad"
+QUBES_RELEASE="R4.1.0"
 RELEASE_ISO_FILENAME="Qubes-${QUBES_RELEASE}-x86_64.iso"
 CUSTOM_ISO_FILENAME="Qubes-${QUBES_RELEASE}-${DEVICE}-oem-x86_64-${1}.iso"
 
@@ -47,6 +62,9 @@ pushd unpacked-iso
 cp ../isolinux.cfg isolinux/
 cp ../ks.cfg ./
 cp -r ../nitrokey ./
+#nitopc efi boot
+cp ../BOOTX64.cfg EFI/BOOT/
+cp ../grub.cfg EFI/BOOT/
 popd
 
 # Build the new ISO
