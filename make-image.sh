@@ -61,7 +61,7 @@ pushd unpacked-iso
 # automatic mode
 cp ../isolinux.cfg isolinux/
 cp ../ks.cfg ./
-cp -r ../nitrokey ./
+# cp -r ../nitrokey ./
 #nitopc efi boot
 cp ../BOOTX64.cfg EFI/BOOT/
 cp ../grub.cfg EFI/BOOT/
