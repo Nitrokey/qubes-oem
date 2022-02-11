@@ -10,7 +10,7 @@ variables:
   GIT_DEPTH: 0                    
   GIT_SUBMODULE_STRATEGY: recursive 
   REPO_NAME: qubes-oem
-  MAIN_BRANCH: nitropad
+  MAIN_BRANCH: master
   COMMON_PULL: "true"
   COMMON_UPLOAD_NIGHTLY: "false"
   COMMON_GITHUB_RELEASE: "false"
@@ -33,18 +33,37 @@ variables:
       - artifacts
     expire_in: 1 hrs
 
-oem-build-DE:
+oem-build-de-nitropad:
   extends: .oem-build
   script:
-    - ./make-image.sh de
+    - ./make-image.sh de nitropad
     - ls
     - mkdir -p artifacts
-    - cp *nitropad*.iso artifacts/
+    - cp Qubes-*oem-x86_64-*.iso artifacts/
 
-oem-build-EN:
+oem-build-en-nitropad:
   extends: .oem-build
   script:
-    - ./make-image.sh en
+    - ./make-image.sh en nitropad
     - ls
     - mkdir -p artifacts
-    - cp *nitropad*.iso artifacts/
+    - cp Qubes-*oem-x86_64-*.iso artifacts/
+
+oem-build-de-nitropc:
+  extends: .oem-build
+  script:
+    - ./make-image.sh de nitropc
+    - ls
+    - mkdir -p artifacts
+    - cp Qubes-*oem-x86_64-*.iso artifacts/
+
+oem-build-en-nitropc:
+  extends: .oem-build
+  script:
+    - ./make-image.sh en nitropc
+    - ls
+    - mkdir -p artifacts
+    - cp Qubes-*oem-x86_64-*.iso artifacts/
+
+
+
