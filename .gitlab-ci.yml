@@ -37,9 +37,9 @@ oem-builds:
   extends: .oem-build
   script:
     - ./make-image.sh de nitropad
-    - ./make-image.sh en nitropad
-    - ./make-image.sh de nitropc
-    - ./make-image.sh en nitropc
+    #- ./make-image.sh en nitropad
+    #- ./make-image.sh de nitropc
+    #- ./make-image.sh en nitropc
     - ls
     - mkdir -p artifacts
     - cp Qubes-*oem-x86_64-*.iso artifacts/
