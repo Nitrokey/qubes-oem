@@ -40,7 +40,8 @@ oem-builds:
     #- ./make-image.sh en nitropad
     #- ./make-image.sh de nitropc
     #- ./make-image.sh en nitropc
-    - ls
+    - gzip Qubes-*oem-x86_64-*.iso
+    - ls -la
     - mkdir -p artifacts
-    - cp Qubes-*oem-x86_64-*.iso artifacts/
+    - cp Qubes-*oem-x86_64-*.iso.gz artifacts/
 
