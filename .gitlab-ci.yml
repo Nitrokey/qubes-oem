@@ -38,7 +38,7 @@ oem-build-nitropad:
   script:
     - mkdir -p artifacts/files/ci-test/nitropad/$UPLOAD_FOLDER
     - ./make-image.sh de nitropad
-    - mv Qubes-*oem-x86_64-*.iso files/ci-test/nitropad/$UPLOAD_FOLDER
+    - mv Qubes-*oem-x86_64-*.iso artifacts/files/ci-test/nitropad/$UPLOAD_FOLDER
     #- ./make-image.sh en nitropad
     #- ./make-image.sh de nitropc
     #- ./make-image.sh en nitropc
