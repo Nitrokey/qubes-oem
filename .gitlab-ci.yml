@@ -14,8 +14,8 @@ variables:
   COMMON_PULL: "true"
   COMMON_UPLOAD_NIGHTLY: "false"
   COMMON_GITHUB_RELEASE: "false"
-  COMMON_UPLOAD_FILES: "true"
-  DEVICE_FOLDER: "nitropad"
+  COMMON_UPLOAD_FILES: "false"
+  COMMON_UPLOAD_OEM_FILES: "true"
   UPLOAD_FOLDER: "qubes-oem"
 
 .oem-build:
@@ -33,15 +33,16 @@ variables:
       - artifacts
     expire_in: 1 hrs
 
-oem-builds:
+oem-build-nitropad:
   extends: .oem-build
   script:
+    - mkdir -p artifacts/files/ci/nitropad/$UPLOAD_FOLDER
     - ./make-image.sh de nitropad
+    - mv Qubes-*oem-x86_64-*.iso files/ci/nitropad/$UPLOAD_FOLDER
     #- ./make-image.sh en nitropad
     #- ./make-image.sh de nitropc
     #- ./make-image.sh en nitropc
-    - gzip Qubes-*oem-x86_64-*.iso
     - ls -la
-    - mkdir -p artifacts
-    - cp Qubes-*oem-x86_64-*.iso.gz artifacts/
+    - cd artifacts/files/ci/nitropad/$UPLOAD_FOLDER
+    - ls -la
 
