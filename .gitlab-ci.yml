@@ -47,7 +47,7 @@ oem-build-nitropad:
     - cd artifacts/files/ci-test/nitropad/$UPLOAD_FOLDER
     - ls -la
 
-upload-oem-files:
+upload-oem-files-repo:
   image: registry.git.nitrokey.com/nitrokey/gitlab-ci/ci-oem-release:latest
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push" && $COMMON_UPLOAD_OEM_FILES == "true"'
