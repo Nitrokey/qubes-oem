@@ -36,13 +36,13 @@ variables:
 oem-build-nitropad:
   extends: .oem-build
   script:
-    - mkdir -p artifacts/files/ci/nitropad/$UPLOAD_FOLDER
+    - mkdir -p artifacts/files/ci-test/nitropad/$UPLOAD_FOLDER
     - ./make-image.sh de nitropad
-    - mv Qubes-*oem-x86_64-*.iso files/ci/nitropad/$UPLOAD_FOLDER
+    - mv Qubes-*oem-x86_64-*.iso files/ci-test/nitropad/$UPLOAD_FOLDER
     #- ./make-image.sh en nitropad
     #- ./make-image.sh de nitropc
     #- ./make-image.sh en nitropc
     - ls -la
-    - cd artifacts/files/ci/nitropad/$UPLOAD_FOLDER
+    - cd artifacts/files/ci-test/nitropad/$UPLOAD_FOLDER
     - ls -la
 
