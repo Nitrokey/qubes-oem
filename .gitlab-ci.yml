@@ -42,6 +42,7 @@ oem-build-nitropad:
     #- ./make-image.sh en nitropad
     #- ./make-image.sh de nitropc
     #- ./make-image.sh en nitropc
+    #
     - ls -la
     - cd artifacts/files/ci-test/nitropad/$UPLOAD_FOLDER
     - ls -la
