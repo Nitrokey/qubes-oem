@@ -47,3 +47,25 @@ oem-build-nitropad:
     - cd artifacts/files/ci-test/nitropad/$UPLOAD_FOLDER
     - ls -la
 
+upload-oem-files:
+  image: registry.git.nitrokey.com/nitrokey/gitlab-ci/ci-oem-release:latest
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push" && $COMMON_UPLOAD_OEM_FILES == "true"'
+  tags:
+    - docker
+  stage: deploy
+  before_script:
+    - echo "-----BEGIN OPENSSH PRIVATE KEY-----" > ~/.ssh/common_scripts_key
+    - echo "$COMMON_SCRIPTS_KEY" >> ~/.ssh/common_scripts_key
+    - echo "-----END OPENSSH PRIVATE KEY-----" >> ~/.ssh/common_scripts_key
+    - chmod 600 ~/.ssh/common_scripts_key
+    - export SCRIPTS_DIR=$(mktemp -d)
+    - git clone -q --depth 1 $SCRIPTS_REPO $SCRIPTS_DIR
+  script:
+    - echo new_common
+    - chmod +x $SCRIPTS_DIR/ci-scripts/oem-release-new.sh
+    - $SCRIPTS_DIR/ci-scripts/oem-release-new.sh
+  after_script:
+    - wget $icon_server/checkmark/$CI_COMMIT_REF_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/$CI_JOB_STATUS/${CI_JOB_URL#*/*/*/}
+
+
