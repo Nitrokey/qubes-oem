@@ -28,10 +28,6 @@ variables:
   stage: build
   after_script:
     - wget $icon_server/checkmark/$CI_COMMIT_REF_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/$CI_JOB_STATUS/${CI_JOB_URL#*/*/*/}
-  artifacts:
-    paths:
-      - artifacts
-    expire_in: 1 hrs
 
 oem-build-nitropad:
   extends: .oem-build
@@ -43,6 +39,10 @@ oem-build-nitropad:
     - cd artifacts/files/ci-test/nitropad/$UPLOAD_FOLDER
     - find . -type f -exec sha256sum {} \; > sha256sum
     - ls -la
+  artifacts:
+    paths:
+      - artifacts
+    expire_in: 1 hrs
 
 oem-build-nitropc:
   extends: .oem-build
@@ -56,3 +56,7 @@ oem-build-nitropc:
     - cd $PC_UPLOAD_FOLDER
     - find . -type f -exec sha256sum {} \; > sha256sum
     - ls -la
+  artifacts:
+    paths:
+      - artifacts
+    expire_in: 1 hrs
