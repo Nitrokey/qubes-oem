@@ -33,7 +33,7 @@ else
     exit
 fi
 # Basic parameters
-QUBES_RELEASE="R4.1.0"
+QUBES_RELEASE="R4.1.1"
 RELEASE_ISO_FILENAME="Qubes-${QUBES_RELEASE}-x86_64.iso"
 CUSTOM_ISO_FILENAME="Qubes-${QUBES_RELEASE}-${DEVICE}-oem-x86_64-${1}.iso"
 
@@ -61,7 +61,14 @@ pushd unpacked-iso
 # automatic mode
 cp ../isolinux.cfg isolinux/
 cp ../ks.cfg ./
-# cp -r ../nitrokey ./
+cp -r ../nitrokey ./
+
+#Install diffrent top File that enables usb keyboard + sys-usb https://www.qubes-os.org/doc/usb-qubes/#how-to-create-a-usb-qube-for-use-with-a-usb-keyboard
+if [ $DEVICE == "nitropc" ];then
+    mv nitrokey/init.top_nitropc nitrokey/init.top
+else
+    rm nitrokey/init.top_nitropc
+fi
 #nitopc efi boot
 cp ../BOOTX64.cfg EFI/BOOT/
 cp ../grub.cfg EFI/BOOT/
