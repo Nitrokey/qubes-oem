@@ -33,18 +33,34 @@ variables:
       - artifacts
     expire_in: 1 hrs
 
-oem-build-DE:
+oem-build-nitropad-DE:
   extends: .oem-build
   script:
-    - ./make-image.sh de
+    - ./make-image.sh de nitropad
     - ls
     - mkdir -p artifacts
     - cp *nitropad*.iso artifacts/
 
-oem-build-EN:
+oem-build-nitropc-DE:
   extends: .oem-build
   script:
-    - ./make-image.sh en
+    - ./make-image.sh de nitropc
+    - ls
+    - mkdir -p artifacts
+    - cp *nitropc*.iso artifacts/
+
+oem-build-nitropad-EN:
+  extends: .oem-build
+  script:
+    - ./make-image.sh en nitropad
     - ls
     - mkdir -p artifacts
     - cp *nitropad*.iso artifacts/
+
+oem-build-nitropc-EN:
+  extends: .oem-build
+  script:
+    - ./make-image.sh en nitropc
+    - ls
+    - mkdir -p artifacts
+    - cp *nitropc*.iso artifacts/
