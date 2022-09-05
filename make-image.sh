@@ -29,7 +29,7 @@ elif [ "$2" = "nitropc" ];then
     DEVICE="nitropc"
     echo "Bulid nitropc image"
 else
-    echo "Usage: ./make-image.sh en\|de nitropc\|nitropad"
+    echo "Usage: ./make-image.sh en\|de nitropc\|nitropad "
     exit
 fi
 # Basic parameters
