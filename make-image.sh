@@ -3,7 +3,6 @@ KS_TEMPLATE=ks_template.cfg
 
 command -v xorriso >/dev/null 2>&1 || { echo >&2 "Please install 'xorriso' first.  Aborting."; exit 1; }
 command -v wget >/dev/null 2>&1 || { echo >&2 "Please install 'wget' first.  Aborting."; exit 1; }
-
 set -xe
 cp $KS_TEMPLATE ks.cfg
 
@@ -33,7 +32,7 @@ else
     exit
 fi
 # Basic parameters
-QUBES_RELEASE="R4.1.1"
+QUBES_RELEASE="R4.1.2"
 RELEASE_ISO_FILENAME="Qubes-${QUBES_RELEASE}-x86_64.iso"
 CUSTOM_ISO_FILENAME="Qubes-${QUBES_RELEASE}-${DEVICE}-oem-x86_64-${1}.iso"
 

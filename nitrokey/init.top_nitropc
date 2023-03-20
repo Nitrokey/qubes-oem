@@ -3,5 +3,5 @@ base:
     - match: nodegroup
     - nitrokey.dom0
     - qvm.usb-keyboard
-  fedora-36:
+  fedora-37:
     - nitrokey.template
