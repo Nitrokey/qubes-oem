@@ -10,7 +10,7 @@ variables:
   GIT_DEPTH: 0                    
   GIT_SUBMODULE_STRATEGY: recursive 
   REPO_NAME: qubes-oem
-  MAIN_BRANCH: nitropad
+  MAIN_BRANCH: main
   COMMON_PULL: "true"
   COMMON_UPLOAD_NIGHTLY: "false"
   COMMON_GITHUB_RELEASE: "false"
