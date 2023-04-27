@@ -22,7 +22,7 @@ fi
 if [ "$2" = "nitropad" ];then
     sed -i s/DISK_INSTALL/sda/g ks.cfg
     DEVICE="nitropad"
-    echo "Bulid nitropad image"
+    echo "Build nitropad image"
 elif [ "$2" = "nitropad-nx" ]; then
     sed -i s/DISK_INSTALL/nvme0n1/g ks.cfg
     DEVICE="nitropad-nx"
@@ -30,9 +30,9 @@ elif [ "$2" = "nitropad-nx" ]; then
 elif [ "$2" = "nitropc" ];then
     sed -i s/DISK_INSTALL/nvme0n1/g ks.cfg
     DEVICE="nitropc"
-    echo "Bulid nitropc image"
+    echo "Build nitropc image"
 else
-    echo "Usage: ./make-image.sh en\|de nitropc\|nitropad "
+    echo "Usage: ./make-image.sh en\|de nitropc\|nitropad\|nitropad-nx "
     exit
 fi
 # Basic parameters
