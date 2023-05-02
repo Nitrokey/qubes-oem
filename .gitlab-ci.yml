@@ -65,6 +65,22 @@ oem-build-nitropc-EN:
     - mkdir -p artifacts
     - cp *nitropc*.iso artifacts/
 
+oem-build-nitropad-nx-DE:
+  extends: .oem-build
+  script:
+    - ./make-image.sh de nitropad-nx
+    - ls
+    - mkdir -p artifacts
+    - cp *nitropad-nx*.iso artifacts/
+
+oem-build-nitropad-nx-EN:
+  extends: .oem-build
+  script:
+    - ./make-image.sh en nitropad-nx
+    - ls
+    - mkdir -p artifacts
+    - cp *nitropad-nx*.iso artifacts/
+
 upload-oem-files:
   image: registry.git.nitrokey.com/nitrokey/gitlab-ci/ci-oem-release:latest
   rules:
