@@ -73,10 +73,10 @@ oem-build-nitropad-nx-DE:
     - mkdir -p artifacts
     - cp *nitropad-nx*.iso artifacts/
 
-oem-build-nitropad-nx-DE:
+oem-build-nitropad-nx-EN:
   extends: .oem-build
   script:
-    - ./make-image.sh de nitropad-nx
+    - ./make-image.sh en nitropad-nx
     - ls
     - mkdir -p artifacts
     - cp *nitropad-nx*.iso artifacts/
