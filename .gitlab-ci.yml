@@ -81,15 +81,15 @@ oem-build-nitropad-nx-EN:
     - mkdir -p artifacts
     - cp *nitropad-nx*.iso artifacts/
 
-upload-oem-files:
-  image: registry.git.nitrokey.com/nitrokey/gitlab-ci/ci-oem-release:latest
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "push"'
-  tags:
-    - docker
-  stage: deploy
-  script:
-    - echo new_common
-    - ./ci-scripts/qubes-oem-release.sh
-  after_script:
-    - wget $icon_server/checkmark/$CI_COMMIT_REF_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/$CI_JOB_STATUS/${CI_JOB_URL#*/*/*/}
+#upload-oem-files:
+#  image: registry.git.nitrokey.com/nitrokey/gitlab-ci/ci-oem-release:latest
+#  rules:
+#    - if: '$CI_PIPELINE_SOURCE == "push"'
+#  tags:
+#    - docker
+#  stage: deploy
+#  script:
+#    - echo new_common
+#    - ./ci-scripts/qubes-oem-release.sh
+#  after_script:
+#    - wget $icon_server/checkmark/$CI_COMMIT_REF_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/$CI_JOB_STATUS/${CI_JOB_URL#*/*/*/}
