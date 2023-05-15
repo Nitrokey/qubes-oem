@@ -1,6 +1,6 @@
 # Qubes unattended OEM installer with LUKS+LVM
 
-This script creates an installer image for Qubes (currently R4.0.3) that
+This script creates an installer image for Qubes (currently R4.1.2) that
  - works unattended (plug in, power on, leave alone for 10 minutes)
  - performs an OEM install - on the subsequent boot the user will be presented with the installer screen to set up their language, timezone, login info, etc.
  - sets up LVM on LUKS with initial password
