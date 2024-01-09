@@ -2,5 +2,5 @@ base:
   dom0:
     - match: nodegroup
     - nitrokey.dom0
-  fedora-37:
+  fedora-38-xfce:
     - nitrokey.template

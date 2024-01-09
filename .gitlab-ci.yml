@@ -1,8 +1,4 @@
-
-include:
-  - project: 'nitrokey/gitlab-ci'
-    file:
-      - 'common-jobs/common_jobs.yml'
+include: 'https://raw.githubusercontent.com/Nitrokey/common-ci-jobs/master/common_jobs.yml'
 
 stages:
   - pull-github
@@ -37,53 +33,23 @@ variables:
       - artifacts
     expire_in: 1 hrs
 
-oem-build-nitropad-DE:
+oem-build-DE:
   extends: .oem-build
   script:
-    - ./make-image.sh de nitropad
+    - ./make-image.sh de
     - ls
     - mkdir -p artifacts
-    - cp *nitropad*.iso artifacts/
+    - cp *oem*.img artifacts/
 
-oem-build-nitropc-DE:
-  extends: .oem-build
-  script:
-    - ./make-image.sh de nitropc
-    - ls
-    - mkdir -p artifacts
-    - cp *nitropc*.iso artifacts/
 
-oem-build-nitropad-EN:
+oem-build-EN:
   extends: .oem-build
   script:
-    - ./make-image.sh en nitropad
+    - ./make-image.sh en
     - ls
     - mkdir -p artifacts
-    - cp *nitropad*.iso artifacts/
+    - cp *oem*.img artifacts/
 
-oem-build-nitropc-EN:
-  extends: .oem-build
-  script:
-    - ./make-image.sh en nitropc
-    - ls
-    - mkdir -p artifacts
-    - cp *nitropc*.iso artifacts/
-
-oem-build-nitropad-nx-DE:
-  extends: .oem-build
-  script:
-    - ./make-image.sh de nitropad-nx
-    - ls
-    - mkdir -p artifacts
-    - cp *nitropad-nx*.iso artifacts/
-
-oem-build-nitropad-nx-EN:
-  extends: .oem-build
-  script:
-    - ./make-image.sh en nitropad-nx
-    - ls
-    - mkdir -p artifacts
-    - cp *nitropad-nx*.iso artifacts/
 
 #upload-oem-files:
 #  image: registry.git.nitrokey.com/nitrokey/gitlab-ci/ci-oem-release:latest
