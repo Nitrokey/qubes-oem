@@ -17,7 +17,7 @@ else
     echo "Usage: ./make-image.sh en\|de"
     exit
 fi
-QUBES_RELEASE="R4.2.0"
+QUBES_RELEASE="R4.2.1"
 RELEASE_ISO_FILENAME="Qubes-${QUBES_RELEASE}-x86_64.iso"
 CUSTOM_ISO_FILENAME="Qubes-${QUBES_RELEASE}-oem-x86_64-${1}.img"
 
@@ -47,6 +47,7 @@ sudo mount ${DEV_QUBES_IMG}p4 /tmp/mnt
 sudo cp ks.cfg /tmp/mnt
 sudo cp -r nitrokey /tmp/mnt
 sudo umount /tmp/mnt
+echo "write" |sudo sfdisk --wipe always ${DEV_QUBES_IMG}
 sudo losetup -d ${DEV_QUBES_IMG}
 
 
