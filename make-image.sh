@@ -5,21 +5,33 @@ command -v wget >/dev/null 2>&1 || { echo >&2 "Please install 'wget' first.  Abo
 
 set -xe
 
-if [ "$1" = "de" ]; then
-	./make-ks.sh de
+if [[ "$1" == "de" ]]; then
+	if [[ "$2" = "gpu" ]];then
+		./make-ks.sh de gpu
+	else
+		./make-ks.sh de
+	fi
 	cp ks-de.cfg ks.cfg
-    echo "Build DE"
+
 elif [ "$1" = "en" ]; then
-	./make-ks.sh en
+	if [[ "$2" = "gpu" ]];then
+		./make-ks.sh en gpu
+	else
+		./make-ks.sh en
+	fi
 	cp ks-en.cfg ks.cfg
-    echo "Build EN"
 else
-    echo "Usage: ./make-image.sh en\|de"
+    echo "Usage: ./make-image.sh en\|de [gpu]"
     exit
 fi
+
+echo "Build: $1 $2"
+
+
+
 QUBES_RELEASE="R4.2.1"
 RELEASE_ISO_FILENAME="Qubes-${QUBES_RELEASE}-x86_64.iso"
-CUSTOM_ISO_FILENAME="Qubes-${QUBES_RELEASE}-oem-x86_64-${1}.img"
+CUSTOM_ISO_FILENAME="Qubes-${QUBES_RELEASE}-oem-${2}-x86_64-${1}.img"
 
 
 if [ ! -f "${RELEASE_ISO_FILENAME}" ]; then
@@ -46,6 +58,7 @@ mkdir /tmp/mnt
 sudo mount ${DEV_QUBES_IMG}p4 /tmp/mnt
 sudo cp ks.cfg /tmp/mnt
 sudo cp -r nitrokey /tmp/mnt
+sudo cp -r gpu_install /tmp/mnt
 sudo umount /tmp/mnt
 echo "write" |sudo sfdisk --wipe always ${DEV_QUBES_IMG}
 sudo losetup -d ${DEV_QUBES_IMG}

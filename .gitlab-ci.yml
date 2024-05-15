@@ -41,6 +41,21 @@ oem-build-DE:
     - mkdir -p artifacts
     - cp *oem*.img artifacts/
 
+oem-build-DE-GPU:
+  extends: .oem-build
+  script:
+    - ./make-image.sh de gpu
+    - ls
+    - mkdir -p artifacts
+    - cp *oem*.img artifacts/
+
+oem-build-EN-GPU:
+  extends: .oem-build
+  script:
+    - ./make-image.sh en gpu
+    - ls
+    - mkdir -p artifacts
+    - cp *oem*.img artifacts/
 
 oem-build-EN:
   extends: .oem-build
