@@ -17,10 +17,10 @@ variables:
   COMMON_UPLOAD_FILES: "false"
   DEVICE_FOLDER: "nitropad"
   UPLOAD_FOLDER: "qubes-oem"
-  PRIVILEGED: "true"
 
 .oem-build:
   image: registry.git.nitrokey.com/nitrokey/gitlab-ci/ci-oem-release:latest
+  privileged: true
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push"'
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
