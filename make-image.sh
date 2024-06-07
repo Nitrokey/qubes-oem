@@ -44,7 +44,7 @@ fi
 major=$(grep loop /proc/devices | cut -c3)
 for index in 0 1 2 3 4 5
 do
-  mknod /dev/loop$i b $major $i
+  mknod /dev/loop$index b $major $index
 done
 
 dd if=/dev/zero of=qubes_oem.img bs=1M count=500 
