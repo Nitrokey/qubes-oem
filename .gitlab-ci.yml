@@ -36,6 +36,7 @@ variables:
 oem-build-DE:
   extends: .oem-build
   script:
+    - apt install pip -y
     - pip install pykickstart
     - ./make-image.sh de
     - ls
