@@ -43,7 +43,7 @@ fi
 
 
 dd if=/dev/zero of=qubes_oem.img bs=1M count=500 
-losetup --find --show qubes_oem.img
+losetup --show --find ./qubes_oem.img
 cat "${RELEASE_ISO_FILENAME}" qubes_oem.img > $CUSTOM_ISO_FILENAME
 DEV_QUBES_IMG="$(sudo losetup -f -P --show $CUSTOM_ISO_FILENAME)"
 #FIXME Start and End not acurate 
