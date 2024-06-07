@@ -41,8 +41,6 @@ if [ ! -f "${RELEASE_ISO_FILENAME}" ]; then
 	mv unverified.iso "${RELEASE_ISO_FILENAME}"
 fi
 
-
-modprobe loop  # This may not be necessary, depending on your kernel build but is harmless.
 major=$(grep loop /proc/devices | cut -c3)
 for index in 0 1 2 3 4 5
 do
