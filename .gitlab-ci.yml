@@ -17,6 +17,7 @@ variables:
   COMMON_UPLOAD_FILES: "false"
   DEVICE_FOLDER: "nitropad"
   UPLOAD_FOLDER: "qubes-oem"
+  PRIVILEGED: "true"
 
 .oem-build:
   image: registry.git.nitrokey.com/nitrokey/gitlab-ci/ci-oem-release:latest
