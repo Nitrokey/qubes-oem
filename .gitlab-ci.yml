@@ -29,7 +29,7 @@ variables:
   before_script:
     - apt-get -qq update && apt-get -qq install -y python
     - apt-get -qq update
-    - apt-get -qq install -y python virtualenv pip sudo
+    - apt-get -qq install -y python virtualenv pip sudo modprobe
     - virtualenv venv
     - . venv/bin/activate
     - python -V
