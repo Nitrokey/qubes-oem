@@ -41,10 +41,9 @@ if [ ! -f "${RELEASE_ISO_FILENAME}" ]; then
 	mv unverified.iso "${RELEASE_ISO_FILENAME}"
 fi
 
-major=$(grep loop /proc/devices | cut -c3)
 for index in 0 1 2 3 4 5
 do
-  mknod /dev/loop$index b $major $index
+  mknod /dev/loop$index b 7 $index
 done
 
 dd if=/dev/zero of=qubes_oem.img bs=1M count=500 
