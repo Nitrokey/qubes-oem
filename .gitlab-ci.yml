@@ -26,6 +26,14 @@ variables:
   tags:
     - docker
   stage: build
+  before_script:
+    - apt-get -qq update && apt-get -qq install -y python
+    - apt-get -qq update
+    - apt-get -qq install -y python python-virtualenv python-pip
+    - virtualenv venv
+    - . venv/bin/activate
+    - python -V
+    - pip install pykickstart
   after_script:
     - wget $icon_server/checkmark/$CI_COMMIT_REF_NAME/$CI_COMMIT_SHA/$CI_JOB_NAME/$CI_JOB_STATUS/${CI_JOB_URL#*/*/*/}
   artifacts:
@@ -36,8 +44,6 @@ variables:
 oem-build-DE:
   extends: .oem-build
   script:
-    - apt install pip -y
-    - pip install pykickstart
     - ./make-image.sh de
     - ls
     - mkdir -p artifacts
