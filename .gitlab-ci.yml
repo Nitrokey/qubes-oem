@@ -36,6 +36,7 @@ variables:
 oem-build-DE:
   extends: .oem-build
   script:
+    - pip install pykickstart
     - ./make-image.sh de
     - ls
     - mkdir -p artifacts
