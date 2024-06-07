@@ -61,7 +61,6 @@ sudo cp -r nitrokey /tmp/mnt
 sudo cp -r gpu_install /tmp/mnt
 sudo umount /tmp/mnt
 echo "write" |sudo sfdisk --wipe always ${DEV_QUBES_IMG}
-sudo losetup -d ${DEV_QUBES_IMG}
 
 
 
