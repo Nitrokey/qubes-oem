@@ -3,7 +3,6 @@
 command -v wget >/dev/null 2>&1 || { echo >&2 "Please install 'wget' first.  Aborting."; exit 1; }
 
 
-set -xe
 
 if [[ "$1" == "de" ]]; then
 	if [[ "$2" = "gpu" ]];then
@@ -21,9 +20,15 @@ elif [ "$1" = "en" ]; then
 	fi
 	cp ks-en.cfg ks.cfg
 else
-    echo "Usage: ./make-image.sh en\|de [gpu]"
+    echo "Usage:"
+    echo "./make-image.sh en"
+    echo "./make-image.sh en gpu"
+    echo "./make-image.sh de "
+    echo "./make-image.sh de gpu"
     exit
 fi
+
+set -xe
 
 echo "Build: $1 $2"
 
