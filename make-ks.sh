@@ -6,6 +6,7 @@ command -v ksvalidator >/dev/null 2>&1 || { echo >&2 "Please install 'pykickstar
 
 set -xe
 cp $KS_TEMPLATE ks.cfg
+sync
 
 if [[ "$1" == "de" ]]; then
     sed -i s/KB_LANG/de/g ks.cfg 
@@ -19,14 +20,13 @@ else
 fi
 
 if [[ "$2" == "gpu" ]]; then
-	sed -i s/GPU_INTERNAL/GPU_EXTERNAL/g ks.cfg
+	sed -i s/GPU=\"GPU_INTERNAL\"/GPU=\"GPU_EXTERNAL\"/g ks.cfg
 fi
 
 if ! ksvalidator ks.cfg; then
 	echo "Error with the Kickstarter File"
 	exit
 fi
-cp ks.cfg ks-$1.cfg
 
 
 #Install diffrent top File that enables usb keyboard + sys-usb https://www.qubes-os.org/doc/usb-qubes/#how-to-create-a-usb-qube-for-use-with-a-usb-keyboard

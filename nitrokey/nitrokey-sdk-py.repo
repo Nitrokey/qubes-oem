@@ -1,0 +1,21 @@
+[copr:copr.fedorainfracloud.org:nitrokey:nitrokey-sdk-py]
+name=Copr repo for nitrokey-sdk-py owned by nitrokey
+baseurl=https://download.copr.fedorainfracloud.org/results/nitrokey/nitrokey-sdk-py/fedora-$releasever-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://download.copr.fedorainfracloud.org/results/nitrokey/nitrokey-sdk-py/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+
+[coprdep:copr.fedorainfracloud.org:nitrokey:3rd-party]
+name=Copr copr.fedorainfracloud.org/nitrokey/nitrokey-sdk-py runtime dependency #1 - nitrokey/3rd-party
+baseurl=https://download.copr.fedorainfracloud.org/results/nitrokey/3rd-party/fedora-$releasever-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://download.copr.fedorainfracloud.org/results/nitrokey/3rd-party/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1

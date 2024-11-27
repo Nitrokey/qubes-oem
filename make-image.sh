@@ -10,7 +10,6 @@ if [[ "$1" == "de" ]]; then
 	else
 		./make-ks.sh de
 	fi
-	cp ks-de.cfg ks.cfg
 
 elif [ "$1" = "en" ]; then
 	if [[ "$2" = "gpu" ]];then
@@ -18,7 +17,6 @@ elif [ "$1" = "en" ]; then
 	else
 		./make-ks.sh en
 	fi
-	cp ks-en.cfg ks.cfg
 else
     echo "Usage:"
     echo "./make-image.sh en"
@@ -34,10 +32,13 @@ echo "Build: $1 $2"
 
 
 
-QUBES_RELEASE="R4.2.1"
+QUBES_RELEASE="R4.2.3"
 RELEASE_ISO_FILENAME="Qubes-${QUBES_RELEASE}-x86_64.iso"
-CUSTOM_ISO_FILENAME="Qubes-${QUBES_RELEASE}-oem-${2}-x86_64-${1}.img"
-
+if [ -z "$2" ];then
+	CUSTOM_ISO_FILENAME="Qubes-${QUBES_RELEASE}-oem-x86_64-${1}.img"
+else
+	CUSTOM_ISO_FILENAME="Qubes-${QUBES_RELEASE}-oem-x86_64-${2}-${1}.img"
+fi
 
 if [ ! -f "${RELEASE_ISO_FILENAME}" ]; then
 	wget -q "https://ftp.qubes-os.org/iso/${RELEASE_ISO_FILENAME}" -O unverified.iso
@@ -46,21 +47,28 @@ if [ ! -f "${RELEASE_ISO_FILENAME}" ]; then
 	mv unverified.iso "${RELEASE_ISO_FILENAME}"
 fi
 
-
 dd if=/dev/zero of=qubes_oem.img bs=1M count=500 
-cat "${RELEASE_ISO_FILENAME}" qubes_oem.img > $CUSTOM_ISO_FILENAME
+mv qubes_oem.img $CUSTOM_ISO_FILENAME 
+#cat "${RELEASE_ISO_FILENAME}" qubes_oem.img > $CUSTOM_ISO_FILENAME
 DEV_QUBES_IMG="$(sudo losetup -f -P --show $CUSTOM_ISO_FILENAME)"
 #FIXME Start and End not acurate 
-echo -e "n \n\n\n\n w "|sudo  fdisk ${DEV_QUBES_IMG}
-sudo mkfs.ext4 ${DEV_QUBES_IMG}p4 
-sudo tune2fs -L QUBES_OEM ${DEV_QUBES_IMG}p4
+#echo -e "n \n\n\n\n w "|sudo  fdisk ${DEV_QUBES_IMG}
+echo -e "n \n\n\n\n\n w "|sudo  fdisk ${DEV_QUBES_IMG}
+
+PART="p1"
+sudo mkfs.fat -F32 -v -I -n "QUBES_OEM" ${DEV_QUBES_IMG}${PART}
+#sudo tune2fs -L QUBES_OEM ${DEV_QUBES_IMG}${PART}
 
 if [[ -d /tmp/mnt ]] ; then
-	rm -rf /tmp/mnt
+	sudo rm -rf /tmp/mnt
 fi	
 
+#
+
+wget https://raw.githubusercontent.com/Nitrokey/nitrokey-udev-rules/main/41-nitrokey.rules -O nitrokey/41-nitrokey.rules
+
 mkdir /tmp/mnt
-sudo mount ${DEV_QUBES_IMG}p4 /tmp/mnt
+sudo mount ${DEV_QUBES_IMG}${PART} /tmp/mnt
 sudo cp ks.cfg /tmp/mnt
 sudo cp -r nitrokey /tmp/mnt
 sudo cp -r gpu_install /tmp/mnt

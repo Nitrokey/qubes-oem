@@ -1,0 +1,11 @@
+[copr:copr.fedorainfracloud.org:nitrokey:nitrokey-app2]
+name=Copr repo for nitrokey-app2 owned by nitrokey
+baseurl=https://download.copr.fedorainfracloud.org/results/nitrokey/nitrokey-app2/fedora-$releasever-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://download.copr.fedorainfracloud.org/results/nitrokey/nitrokey-app2/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+priority=100

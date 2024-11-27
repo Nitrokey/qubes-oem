@@ -1,0 +1,6 @@
+[nitrokey-app2-offline]
+name=nitroykey-app2-offline
+repo_gpgcheck=0
+gpgcheck=0
+baseurl=file:///var/tmp/nitrokey_offline_repo
+enabled=0
