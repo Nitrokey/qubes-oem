@@ -4,23 +4,29 @@
 # Here rules in new style should be provided. Matching devices should be tagged with 'uaccess'.
 # File prefix number should be lower than 73, to be correctly processed by the Udev.
 # Recommended udev version: >= 188.
-#
+
 ACTION!="add|change", GOTO="u2f_end"
 
 # Nitrokey U2F
 KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="2581", ATTRS{idProduct}=="f1d0", TAG+="uaccess"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="2581", ATTRS{idProduct}=="f1d0", TAG+="uaccess"
 # Nitrokey FIDO U2F
 KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="20a0", ATTRS{idProduct}=="4287", TAG+="uaccess"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="20a0", ATTRS{idProduct}=="4287", TAG+="uaccess"
 # Nitrokey FIDO2
 KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="20a0", ATTRS{idProduct}=="42b1", TAG+="uaccess"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="20a0", ATTRS{idProduct}=="42b1", TAG+="uaccess"
 # Nitrokey 3A Mini/3A NFC/3C NFC
 KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="20a0", ATTRS{idProduct}=="42b2", TAG+="uaccess"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="20a0", ATTRS{idProduct}=="42b2", TAG+="uaccess"
 # Nitrokey 3A NFC Bootloader/3C NFC Bootloader
 KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="20a0", ATTRS{idProduct}=="42dd", TAG+="uaccess"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="20a0", ATTRS{idProduct}=="42dd", TAG+="uaccess"
 # Nitrokey 3A Mini Bootloader
 ATTRS{idVendor}=="20a0", ATTRS{idProduct}=="42e8", TAG+="uaccess"
 # Nitrokey Passkey
 KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="20a0", ATTRS{idProduct}=="42f3", TAG+="uaccess"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="20a0", ATTRS{idProduct}=="42f3", TAG+="uaccess"
 # Nitrokey Passkey Bootloader
 ATTRS{idVendor}=="20a0", ATTRS{idProduct}=="42f4", TAG+="uaccess"
 
@@ -30,24 +36,19 @@ LABEL="u2f_end"
 SUBSYSTEM!="usb", GOTO="gnupg_rules_end"
 ACTION!="add", GOTO="gnupg_rules_end"
 
-# USB SmartCard Readers
-## Crypto Stick 1.2
+# CryptoStick 1.2
 ATTR{idVendor}=="20a0", ATTR{idProduct}=="4107", ENV{ID_SMARTCARD_READER}="1", ENV{ID_SMARTCARD_READER_DRIVER}="gnupg", TAG+="uaccess"
-## Nitrokey Pro
+# Nitrokey Pro
 ATTR{idVendor}=="20a0", ATTR{idProduct}=="4108", ENV{ID_SMARTCARD_READER}="1", ENV{ID_SMARTCARD_READER_DRIVER}="gnupg", TAG+="uaccess"
-## Nitrokey Pro Bootloader
+# Nitrokey Pro Bootloader
 ATTRS{idVendor}=="20a0", ATTRS{idProduct}=="42b4", TAG+="uaccess"
-## Nitrokey Storage
+# Nitrokey Storage
 ATTR{idVendor}=="20a0", ATTR{idProduct}=="4109", ENV{ID_SMARTCARD_READER}="1", ENV{ID_SMARTCARD_READER_DRIVER}="gnupg", TAG+="uaccess"
-## Nitrokey Storage Bootloader
-ATTR{idVendor}=="03eb", ATTR{idProduct}=="2ff1", TAG+="uaccess"
-## Nitrokey Start
+# Nitrokey Storage Bootloader
+ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff1", TAG+="uaccess"
+# Nitrokey Start
 ATTR{idVendor}=="20a0", ATTR{idProduct}=="4211", ENV{ID_SMARTCARD_READER}="1", ENV{ID_SMARTCARD_READER_DRIVER}="gnupg", TAG+="uaccess"
-## Nitrokey HSM
+# Nitrokey HSM
 ATTR{idVendor}=="20a0", ATTR{idProduct}=="4230", ENV{ID_SMARTCARD_READER}="1", ENV{ID_SMARTCARD_READER_DRIVER}="gnupg", TAG+="uaccess"
 
 LABEL="gnupg_rules_end"
-
-
-# Nitrokey Storage dev Entry
-KERNEL=="sd?1", ATTRS{idVendor}=="20a0", ATTRS{idProduct}=="4109", SYMLINK+="nitrospace"

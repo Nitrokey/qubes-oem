@@ -32,7 +32,7 @@ echo "Build: $1 $2"
 
 
 
-QUBES_RELEASE="R4.2.3"
+QUBES_RELEASE="R4.2.4"
 RELEASE_ISO_FILENAME="Qubes-${QUBES_RELEASE}-x86_64.iso"
 if [ -z "$2" ];then
 	CUSTOM_ISO_FILENAME="Qubes-${QUBES_RELEASE}-oem-x86_64-${1}.img"
