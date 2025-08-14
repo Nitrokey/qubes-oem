@@ -1,10 +1,10 @@
 # Qubes unattended OEM installer with LUKS+LVM
 
-This script creates an secondary configuration image for Qubes (currently R4.2.3) that can be used for:
+This script creates an secondary configuration image for Qubes (currently R4.2.4) that can be used for:
  - works unattended (plug in, power on, leave alone for 10 minutes)
  - performs an OEM install - on the subsequent boot the user will be presented with the installer screen to set up their language, timezone, login info, etc.
  - sets up LVM on LUKS with initial password
- - pre installs the Nitrokey App2 and Nitrokey App in the feodra template
+ - pre installs the Nitrokey App2 and Nitrokey App in the Fedora template
  - can be used to hide extra GPU from dom0 (use gpu option) to allow esay install 
  
 # WARNING WARNING WARNING
