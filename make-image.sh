@@ -41,8 +41,8 @@ else
 fi
 
 if [ ! -f "${RELEASE_ISO_FILENAME}" ]; then
-	wget -q "https://ftp.qubes-os.org/iso/${RELEASE_ISO_FILENAME}" -O unverified.iso
-	wget -q "https://ftp.qubes-os.org/iso/${RELEASE_ISO_FILENAME}.asc"
+	wget -q "https://mirrors.edge.kernel.org/qubes/iso/${RELEASE_ISO_FILENAME}" -O unverified.iso
+	wget -q "https://mirrors.edge.kernel.org/qubes/iso/${RELEASE_ISO_FILENAME}.asc"
 	gpgv --keyring ./qubes-release-keyring.gpg "${RELEASE_ISO_FILENAME}.asc" unverified.iso
 	mv unverified.iso "${RELEASE_ISO_FILENAME}"
 fi
