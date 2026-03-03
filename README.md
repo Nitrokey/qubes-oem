@@ -1,3 +1,6 @@
+**Do not use this repository anymore - please refer to [the documentation](https://docs.nitrokey.com/nitropad-nitropc/os-reinstallation) on how to properly re-install the OS on a Nitropad/NitroPC**
+
+
 # Qubes unattended OEM installer with LUKS+LVM
 
 This script creates an secondary configuration image for Qubes (currently R4.2.4) that can be used for:
